@@ -46,9 +46,9 @@ else()
 endif()
 
 # add remote_wiring
-add_subdirectory(serial)
+add_subdirectory(../serial ../serial/build)
 target_link_libraries(mortar PRIVATE serial)
-target_include_directories(mortar PRIVATE serial/include)
+target_include_directories(mortar PRIVATE ../serial/include)
 
 target_link_libraries(mortar PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 

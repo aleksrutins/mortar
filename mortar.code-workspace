@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "mortar-pico"
+		},
+		{
+			"path": "mortar-qt"
 		}
 	],
 	"settings": {
