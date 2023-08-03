@@ -7,7 +7,7 @@
 			"path": "mortar-pico"
 		},
 		{
-			"path": "mortar-qt"
+			"path": "Mortar.Dashboard"
 		}
 	],
 	"settings": {
