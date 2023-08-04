@@ -7,10 +7,15 @@
 			"path": "mortar-pico"
 		},
 		{
-			"path": "Mortar.Dashboard"
+			"path": "mortar-gui"
 		}
 	],
 	"settings": {
-		"FSharp.suggestGitignore": false
+		"FSharp.suggestGitignore": false,
+		"files.associations": {
+			"serial.h": "c"
+		},
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.compile.nullAnalysis.mode": "automatic"
 	}
 }

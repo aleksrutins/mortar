@@ -1,4 +1,5 @@
 {
     "cmake.configureOnOpen": true,
-    "FSharp.suggestGitignore": false
+    "FSharp.suggestGitignore": false,
+    "cmake.sourceDirectory": "/home/aleks/Projects/mortar/mortar-pico"
 }
