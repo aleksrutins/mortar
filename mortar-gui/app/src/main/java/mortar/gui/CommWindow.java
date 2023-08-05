@@ -18,6 +18,6 @@ public class CommWindow extends JInternalFrame {
     }
 
     public void fire(MapWindow.AimingInfo aim) {
-
+        
     }
 }

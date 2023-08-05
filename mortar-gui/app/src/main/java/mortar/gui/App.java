@@ -12,6 +12,7 @@ import javax.swing.*;
 
 import com.fazecast.jSerialComm.SerialPort;
 
+import mortar.gui.map.LoadMapWindow;
 import mortar.gui.map.MapWindow;
 
 public class App extends JFrame {
@@ -57,6 +58,11 @@ public class App extends JFrame {
         var fileMenu = new JMenu("File");
 
         var loadMapBtn = new JMenuItem("Load Map", KeyEvent.VK_M);
+        loadMapBtn.addActionListener(event -> {
+            var wnd = new LoadMapWindow(mapWnd.mapView);
+            wnd.setVisible(true);
+            desktop.add(wnd);
+        });
         fileMenu.add(loadMapBtn);
 
         fireMenuItem = new JMenuItem("Fire", KeyEvent.VK_ENTER);
