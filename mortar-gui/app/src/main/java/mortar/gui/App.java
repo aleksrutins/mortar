@@ -38,7 +38,7 @@ public class App extends JFrame {
  
 
         desktop = new JDesktopPane();
-        desktop.setBackground(Color.GRAY);
+        //desktop.setBackground(Color.GRAY);
 
         var connectionDialog = new ConnectionDialog();
         connectionDialog.setVisible(true);
@@ -108,7 +108,6 @@ public class App extends JFrame {
 
     public static void main(String[] args) {
         System.setProperty("fazecast.jSerialComm.appid", "MORTAR_GUI");
-
         FlatLightLaf.setup();
         
         SwingUtilities.invokeLater(() -> {
