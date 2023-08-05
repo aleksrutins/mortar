@@ -13,7 +13,6 @@ public class ConnectionDialog extends JInternalFrame {
 
     public ConnectionDialog() {
         super("Connect to Serial Port");
-        setBounds(50, 50, 400, 50);
 
         portSelect = new JComboBox<>(SerialPort.getCommPorts());
 
@@ -38,5 +37,7 @@ public class ConnectionDialog extends JInternalFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
         contentPane.add(portSelect);
         contentPane.add(connectButton);
+        pack();
+        setSize(300, getHeight());
     }    
 }

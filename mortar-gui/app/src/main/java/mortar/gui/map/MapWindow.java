@@ -10,7 +10,7 @@ public class MapWindow extends JInternalFrame {
     public MapView mapView;
 
     public MapWindow() {
-        super("Map", true, false, true, true);
+        super("Map", true, true, true, true);
         setBounds(500, 500, 600, 600);
         mapView = new MapView();
         add(mapView);

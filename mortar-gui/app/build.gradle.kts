@@ -22,6 +22,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     implementation("com.fazecast:jSerialComm:[2.0.0,3.0.0)")
+    implementation("com.formdev:flatlaf:3.1.1")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

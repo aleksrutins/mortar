@@ -17,6 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -129,7 +130,8 @@ public class LoadMapWindow
                     name.endsWith(".jpeg") ||
                     name.endsWith(".jpg") ||
                     name.endsWith(".png") ||
-                    name.endsWith(".bmp");
+                    name.endsWith(".bmp") ||
+                    f.isDirectory();
             }
 
             @Override
@@ -142,7 +144,9 @@ public class LoadMapWindow
         int result = fileChooser.showOpenDialog(this);
         if(result == JFileChooser.APPROVE_OPTION) {
             try {
-                this.image = ImageIO.read(fileChooser.getSelectedFile());
+                image = ImageIO.read(fileChooser.getSelectedFile());
+                imageViewer.setImage(image);
+                pack();
             } catch(IOException err) {
                 Dialogs.showError("Failed to read image: " + err.getMessage(), this);
             }

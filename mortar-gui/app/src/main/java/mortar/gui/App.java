@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 import com.fazecast.jSerialComm.SerialPort;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import mortar.gui.map.LoadMapWindow;
 import mortar.gui.map.MapWindow;
@@ -62,6 +63,7 @@ public class App extends JFrame {
             var wnd = new LoadMapWindow(mapWnd.mapView);
             wnd.setVisible(true);
             desktop.add(wnd);
+            wnd.toFront();
         });
         fileMenu.add(loadMapBtn);
 
@@ -73,6 +75,23 @@ public class App extends JFrame {
         });
         fileMenu.add(fireMenuItem);
         menuBar.add(fileMenu);
+
+        var viewMenu = new JMenu("View");
+        var mapBtn = new JMenuItem("Map");
+        mapBtn.addActionListener(event -> {
+            if(mapWnd != null) {
+                mapWnd.setVisible(true);
+                if(!SwingUtilities.isDescendingFrom(mapWnd, desktop)) desktop.add(mapWnd);
+                mapWnd.toFront();
+            }
+            else {
+                mapWnd = new MapWindow();
+                mapWnd.setVisible(true);
+                desktop.add(mapWnd);
+            }
+        });
+        viewMenu.add(mapBtn);
+        menuBar.add(viewMenu);
 
         var helpMenu = new JMenu("Help");
 
@@ -90,9 +109,7 @@ public class App extends JFrame {
     public static void main(String[] args) {
         System.setProperty("fazecast.jSerialComm.appid", "MORTAR_GUI");
 
-        // try {
-        //     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        // } catch(Exception e) {}
+        FlatLightLaf.setup();
         
         SwingUtilities.invokeLater(() -> {
             JFrame.setDefaultLookAndFeelDecorated(true);
