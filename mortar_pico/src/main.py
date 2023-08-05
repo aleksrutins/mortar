@@ -1,8 +1,11 @@
 import PicoRobotics
 import sys
 from mortar.math import aim
+from mortar.ports import *
 
 board = PicoRobotics.KitronikPicoRobotics()
+
+board.servoWrite(TRIGGER_SERVO, 0)
 
 while True:
     cmd = sys.stdin.readline().strip()
