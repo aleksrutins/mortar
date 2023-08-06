@@ -3,8 +3,10 @@ package mortar.gui.map;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,9 +18,12 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.ImageObserver;
+import java.util.Map;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class MapView
     extends JPanel
@@ -95,6 +100,8 @@ public class MapView
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        ((Graphics2D)g).addRenderingHints((Map<?, ?>)Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints"));
 
         var height = getHeight();
         var width = getWidth();
