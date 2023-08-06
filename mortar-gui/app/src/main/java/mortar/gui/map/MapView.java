@@ -29,13 +29,13 @@ public class MapView
         KeyListener
 {
     private Image image;
-    private double pixelsPerFoot = 0;
+    double pixelsPerFoot = 0;
 
     private boolean placingMortar;
     private Point currentPos = new Point(0, 0);
-    private Point mortarPos = new Point(0, 0);
-    private Point targetPos = new Point(0, 0);
-    private double mortarOrientation = 0;
+    Point mortarPos = new Point(0, 0);
+    Point targetPos = new Point(0, 0);
+    double mortarOrientation = 0;
 
     private int dx = 0;
     private int dy = 0;
@@ -114,6 +114,11 @@ public class MapView
 
         drawMortarIndicator(g, mortarPos.getX() + dx, mortarPos.getY() + dy);
         drawTargetIndicator(g, targetPos.getX() + dx, targetPos.getY() + dy);
+    }
+
+    public boolean isTargetValid() {
+        var angle = Math.atan2(targetPos.getY() - mortarPos.getY(), targetPos.getX() - mortarPos.getY());
+        return (mortarOrientation - (Math.PI/2)) < angle && angle < (mortarOrientation + (Math.PI/2));
     }
 
     // Event listeners

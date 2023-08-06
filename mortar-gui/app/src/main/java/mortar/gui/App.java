@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
@@ -16,7 +19,10 @@ import com.formdev.flatlaf.FlatLightLaf;
 import mortar.gui.map.LoadMapWindow;
 import mortar.gui.map.MapWindow;
 
-public class App extends JFrame {
+public class App
+    extends JFrame
+    implements WindowListener
+{
     private static SerialPort serialPort;
 
     JDesktopPane desktop;
@@ -30,6 +36,8 @@ public class App extends JFrame {
     public App() {
         setTitle("NERF Mortar Control Panel");
 
+        addWindowListener(this);
+
         int inset = 50;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset,
@@ -41,6 +49,12 @@ public class App extends JFrame {
         //desktop.setBackground(Color.GRAY);
 
         var connectionDialog = new ConnectionDialog();
+        connectionDialog.addConnectListener(port -> {
+            commWnd = new CommWindow(port);
+            commWnd.setVisible(true);
+            desktop.add(commWnd);
+            fireMenuItem.setEnabled(true);
+        });
         connectionDialog.setVisible(true);
         desktop.add(connectionDialog);
 
@@ -70,7 +84,13 @@ public class App extends JFrame {
         fireMenuItem = new JMenuItem("Fire", KeyEvent.VK_ENTER);
         fireMenuItem.setEnabled(commWnd != null);
         fireMenuItem.addActionListener((event) -> {
-            if(commWnd != null) commWnd.fire(mapWnd.getAim());
+            if(commWnd != null) {
+                try {
+                    commWnd.fire(mapWnd);
+                } catch(IOException e) {
+                    Dialogs.showError("Failed to write to serial: " + e.getMessage(), this.desktop);
+                }
+            }
             else Dialogs.showError("No serial connection available", this.desktop);
         });
         fileMenu.add(fireMenuItem);
@@ -117,4 +137,27 @@ public class App extends JFrame {
             app.setVisible(true);
         });
     }
+
+    @Override
+    public void windowOpened(WindowEvent e) {}
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        if(commWnd != null) commWnd.closePort();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {}
+
+    @Override
+    public void windowIconified(WindowEvent e) {}
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {}
+
+    @Override
+    public void windowActivated(WindowEvent e) {}
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {}
 }

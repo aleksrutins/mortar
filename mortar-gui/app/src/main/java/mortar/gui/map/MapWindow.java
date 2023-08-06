@@ -17,6 +17,11 @@ public class MapWindow extends JInternalFrame {
     }
 
     public AimingInfo getAim() {
-        return new AimingInfo(0f, 0f);
+        var distanceX = (mapView.targetPos.x - mapView.mortarPos.x) / mapView.pixelsPerFoot;
+        var distanceY = (mapView.targetPos.y - mapView.mortarPos.y) / mapView.pixelsPerFoot;
+        return new AimingInfo(
+            (float)Math.atan2(distanceY, distanceX),
+            (float)Math.sqrt(Math.pow(distanceX, 2.0) + Math.pow(distanceY, 2.0))
+        );
     }
 }
