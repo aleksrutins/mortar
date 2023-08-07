@@ -23,8 +23,6 @@ public class App
     extends JFrame
     implements WindowListener
 {
-    private static SerialPort serialPort;
-
     JDesktopPane desktop;
 
     MapWindow mapWnd;
