@@ -1,0 +1,6 @@
+[tools]
+gradle = "latest"
+java = "21"
+pipx = "latest"
+"pipx:micropy-cli" = "latest"
+python = "3.11"

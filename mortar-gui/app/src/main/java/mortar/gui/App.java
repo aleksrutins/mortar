@@ -115,7 +115,7 @@ public class App
 
         var aboutMenuItem = new JMenuItem("About");
         aboutMenuItem.addActionListener((event) -> {
-            JOptionPane.showInternalMessageDialog(this.desktop, "NERF Mortar Control Panel \u00A9 2023 Aleks Rutins");
+            JOptionPane.showInternalMessageDialog(this.desktop, "NERF Mortar Control Panel \u00A9 2025 Aleks Rutins");
         });
 
         helpMenu.add(aboutMenuItem);

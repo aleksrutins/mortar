@@ -16,6 +16,7 @@
 			"serial.h": "c"
 		},
 		"java.configuration.updateBuildConfiguration": "automatic",
-		"java.compile.nullAnalysis.mode": "automatic"
+		"java.compile.nullAnalysis.mode": "automatic",
+		"python.defaultInterpreterPath": "/home/aleks/.local/share/mise/installs/python/3.11.11/bin/python"
 	}
 }

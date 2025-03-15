@@ -1,4 +1,4 @@
-from math import *
+from math import atan, sqrt
 import PicoRobotics
 from .ports import *
 
